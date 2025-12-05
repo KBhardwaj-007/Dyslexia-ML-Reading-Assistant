@@ -1,13 +1,24 @@
 # Frontend Prototype
 
-Static HTML/CSS/JS demo (no build step) showcasing the reading workspace and calls to the FastAPI backend.
+React + Vite frontend for the Dyslexia ML Reading Assistant.
 
-## Run
-Open `frontend/index.html` in a browser. The buttons call the backend at `http://localhost:8000`.
+## Run (dev)
+```bash
+cd frontend
+npm install
+npm run dev -- --host
+```
+Frontend runs on http://localhost:5173. Set backend API base via `VITE_API_BASE` (default http://localhost:8000).
 
-## Panels
+## Build
+```bash
+npm run build
+npm run preview
+```
+
+## Features
 - Reading workspace with text area, target word entry, and module buttons.
-- Metrics chips for accuracy, pace, focus, and next difficulty level.
-- Mentor persona card that shows supportive feedback.
-
-The calls are mocked today; connect to live ASR/gaze endpoints by swapping the FastAPI services.
+- Record + Whisper: captures 4s audio and sends to `/listen/upload`.
+- Attention: optional webcam frames streamed to `/observe/analyze`.
+- Adaptation, assist, mentor, and session logging wired to FastAPI endpoints.
+- Metrics for accuracy, pace, focus, and next level.
