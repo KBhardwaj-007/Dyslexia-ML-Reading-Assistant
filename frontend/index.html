@@ -139,10 +139,7 @@
         <input id="targetWord" placeholder="Word to practice (optional)" style="margin-top:8px;width:100%;padding:10px;border-radius:10px;border:1px solid rgba(148,163,184,0.25);background:rgba(226,232,240,0.03);color:var(--text);" />
         <div class="controls">
           <button onclick="runSpeech()">Analyze Speech (mock)</button>
-<<<<<<< HEAD
-=======
           <button onclick="recordAndAnalyze()">Record + Whisper</button>
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
           <button class="secondary" onclick="runAttention()">Check Focus</button>
           <button class="secondary" onclick="runAdapt()">Plan Difficulty</button>
           <button onclick="runAssist()">Assist Me</button>
@@ -150,13 +147,8 @@
           <button class="secondary" onclick="logSession()">Log Session</button>
         </div>
         <div class="controls">
-<<<<<<< HEAD
-          <button class="secondary" onclick="startMic()">Start Mic</button>
-          <button class="secondary" onclick="startCam()">Start Cam</button>
-=======
           <button class="secondary" onclick="startMic()">Arm Mic</button>
           <button class="secondary" onclick="startCam()">Start Cam Stream</button>
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
           <span id="capStatus" class="small" style="color:var(--muted);">Mic/Cam idle</span>
         </div>
       </div>
@@ -202,8 +194,6 @@
     let lastPace = 115;
     let lastFocus = 0.7;
     let lastLevel = 'A1';
-<<<<<<< HEAD
-=======
     let audioStream = null;
     let mediaRecorder = null;
     let audioChunks = [];
@@ -212,7 +202,6 @@
     const hiddenVideo = document.createElement('video');
     hiddenVideo.playsInline = true;
     const hiddenCanvas = document.createElement('canvas');
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
 
     async function postJson(path, body) {
       const res = await fetch(`${API_BASE}${path}`, {
@@ -226,8 +215,6 @@
 
     function setOutput(text) { output.textContent = text; }
 
-<<<<<<< HEAD
-=======
     async function recordAndAnalyze() {
       try {
         if (!audioStream) await startMic();
@@ -258,7 +245,6 @@
       }
     }
 
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
     async function runSpeech() {
       try {
         const text = document.getElementById('readingText').value;
@@ -285,11 +271,7 @@
 
     async function runAdapt() {
       try {
-<<<<<<< HEAD
-        const data = await postJson('/adapt/plan', { pace_wpm: 118, error_rate: 0.12, focus_score: 0.7, current_level: 'A1' });
-=======
         const data = await postJson('/adapt/plan', { pace_wpm: lastPace, error_rate: 0.12, focus_score: lastFocus, current_level: lastLevel, prev_focus_score: lastFocus, prev_pace_wpm: lastPace, prev_error_rate: 0.12 });
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
         levelEl.textContent = data.next_level;
         lastLevel = data.next_level;
         setOutput(`Speed: ${data.reading_speed_wpm} wpm | Font: ${data.font_size_px}px | Spacing: ${data.spacing_em}em | Hints: ${data.hint_frequency}\n${data.rationale}`);
@@ -307,11 +289,7 @@
 
     async function runMentor() {
       try {
-<<<<<<< HEAD
-        const data = await postJson('/mentor/coach', { learner_name: 'You', tone: 'friendly', focus_score: 0.7, accuracy: 0.82, pace_wpm: 118 });
-=======
         const data = await postJson('/mentor/coach', { learner_name: 'You', tone: 'friendly', focus_score: lastFocus, accuracy: lastAccuracy, pace_wpm: lastPace, level: lastLevel, fatigue_score: 0.3, distraction_flag: false });
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
         mentorMsg.textContent = `${data.persona}: ${data.message}`;
         mentorSummary.textContent = data.summary.join(' • ');
         setOutput(`Next actions: ${data.next_actions.join('; ')}`);
@@ -335,11 +313,7 @@
 
     async function startMic() {
       try {
-<<<<<<< HEAD
-        await navigator.mediaDevices.getUserMedia({ audio: true });
-=======
         audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
         capStatus.textContent = 'Mic ready';
       } catch (err) {
         capStatus.textContent = 'Mic blocked';
@@ -349,24 +323,17 @@
 
     async function startCam() {
       try {
-<<<<<<< HEAD
-        await navigator.mediaDevices.getUserMedia({ video: true });
-        capStatus.textContent = 'Cam ready';
-=======
         videoStream = await navigator.mediaDevices.getUserMedia({ video: { width: 320, height: 240 } });
         hiddenVideo.srcObject = videoStream;
         await hiddenVideo.play();
         capStatus.textContent = 'Cam streaming';
         if (frameTimer) clearInterval(frameTimer);
         frameTimer = setInterval(captureFrame, 1500);
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
       } catch (err) {
         capStatus.textContent = 'Cam blocked';
         setOutput(err.message);
       }
     }
-<<<<<<< HEAD
-=======
 
     async function captureFrame() {
       if (!hiddenVideo.videoWidth) return;
@@ -385,7 +352,6 @@
         capStatus.textContent = 'Cam error';
       }
     }
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
   </script>
 </body>
 </html>

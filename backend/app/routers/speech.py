@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-from fastapi import APIRouter
-
-from ..models import SpeechRequest, SpeechResponse
-from ..services.speech import analyze_speech
-=======
 import tempfile
 from fastapi import APIRouter, File, UploadFile, Form
 
 from ..models import SpeechRequest, SpeechResponse
 from ..services.speech import analyze_speech, analyze_uploaded_speech
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
 
 router = APIRouter()
 
@@ -17,8 +10,6 @@ router = APIRouter()
 @router.post("/analyze", response_model=SpeechResponse)
 async def analyze_speech_endpoint(payload: SpeechRequest) -> SpeechResponse:
     return analyze_speech(payload)
-<<<<<<< HEAD
-=======
 
 
 @router.post("/upload", response_model=SpeechResponse)
@@ -33,4 +24,3 @@ async def analyze_upload(
         tmp.write(data)
         path = tmp.name
     return analyze_uploaded_speech(path, reference_text or None)
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)

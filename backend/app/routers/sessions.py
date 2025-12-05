@@ -1,12 +1,7 @@
 from fastapi import APIRouter
 
-<<<<<<< HEAD
-from ..models import SessionLogRequest, SessionLogResponse
-from ..services.logs import log_session
-=======
 from ..models import SessionLogRequest, SessionLogResponse, SessionAggregateResponse
 from ..services.logs import log_session, list_sessions, learner_stats
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
 
 router = APIRouter()
 
@@ -14,8 +9,6 @@ router = APIRouter()
 @router.post("/log", response_model=SessionLogResponse)
 async def log_session_endpoint(payload: SessionLogRequest) -> SessionLogResponse:
     return log_session(payload)
-<<<<<<< HEAD
-=======
 
 
 @router.get("/recent", response_model=list[SessionLogResponse])
@@ -26,4 +19,3 @@ async def recent_sessions(limit: int = 20) -> list[SessionLogResponse]:
 @router.get("/learner/{name}", response_model=SessionAggregateResponse)
 async def learner_summary(name: str) -> SessionAggregateResponse:
     return learner_stats(name)
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)

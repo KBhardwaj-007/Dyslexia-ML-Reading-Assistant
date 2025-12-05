@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-"""Attention provider hooks (MediaPipe / OpenCV).
-
-These functions are placeholders to integrate real gaze/blink estimation models. They currently
-return None so the service layer can fall back to client-provided signals.
-"""
-from __future__ import annotations
-from typing import Optional, Tuple
-
-try:  # Optional dependency
-    import cv2  # type: ignore
-except ImportError:  # pragma: no cover - optional
-    cv2 = None  # type: ignore
-
-
-def estimate_focus_from_frame(frame_bytes: bytes) -> Optional[Tuple[float, float]]:
-    """Return (focus_score, blink_rate) if a model is available; otherwise None."""
-    if cv2 is None:
-        return None
-    # Placeholder: real implementation would decode frame and run eye-aspect-ratio or landmark model
-    return None
-=======
 """Attention provider using MediaPipe Face Mesh.
 
 Computes a coarse focus score from gaze alignment and eye openness. Blink rate is approximated
@@ -101,4 +79,3 @@ def estimate_focus_from_frame(frame_bytes: bytes) -> Optional[Tuple[float, float
     blink_rate = 30 if ear < 0.18 else 15
 
     return round(focus, 2), blink_rate
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)

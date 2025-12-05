@@ -11,8 +11,6 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-<<<<<<< HEAD
-=======
 Optional `.env` settings:
 ```
 DATABASE_URL=sqlite:///./app.db
@@ -20,25 +18,17 @@ WHISPER_MODEL_SIZE=base   # e.g., small, medium
 DEVICE=cpu                # or cuda if available
 ```
 
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
 API root: http://localhost:8000
 Docs: http://localhost:8000/docs
 
 ## Endpoints
 - `POST /listen/analyze` — mock speech analysis returns transcript accuracy, pace, and error spans.
-<<<<<<< HEAD
-=======
 - `POST /listen/upload` — file upload to Whisper-powered transcription plus scoring.
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
 - `POST /observe/analyze` — attention/fatigue estimation from focus score and blink rate.
 - `POST /adapt/plan` — suggests next difficulty, spacing, and TTS speed.
 - `POST /assist/assist` — returns mock TTS preview link and highlight spans.
 - `POST /mentor/coach` — persona-based motivational feedback and next steps.
 - `POST /sessions/log` — persists session summary (accuracy/focus/pace/level) to SQLite.
-<<<<<<< HEAD
-
-These endpoints use lightweight heuristics; swap in Whisper/MediaPipe/RL models via the service layer when available.
-=======
 - `GET /sessions/recent` — list recent session logs.
 - `GET /sessions/learner/{name}` — aggregate stats for a learner.
 
@@ -58,4 +48,3 @@ cd backend
 docker build -t dyslexia-assistant-api .
 docker run -p 8000:8000 --env-file .env dyslexia-assistant-api
 ```
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)

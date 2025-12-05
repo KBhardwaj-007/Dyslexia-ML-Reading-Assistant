@@ -26,6 +26,15 @@ app.include_router(mentor.router, prefix="/mentor", tags=["mentor"])
 app.include_router(sessions.router, prefix="/sessions", tags=["sessions"])
 
 
+@app.get("/")
+async def root() -> dict:
+    return {
+        "message": "Dyslexia ML Reading Assistant API",
+        "docs": "/docs",
+        "modules": ["listen", "observe", "adapt", "assist", "mentor", "sessions"],
+    }
+
+
 @app.get("/health")
 async def health() -> dict:
     return {"status": "ok"}

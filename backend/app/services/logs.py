@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-from sqlmodel import Session
-
-from ..database import get_engine
-from ..db_models import SessionLog
-from ..models import SessionLogRequest, SessionLogResponse
-=======
 from sqlmodel import Session, select
 
 from ..database import get_engine
 from ..db_models import SessionLog
 from ..models import SessionLogRequest, SessionLogResponse, SessionAggregateResponse
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
 
 
 def log_session(payload: SessionLogRequest) -> SessionLogResponse:
@@ -37,8 +29,6 @@ def log_session(payload: SessionLogRequest) -> SessionLogResponse:
             note=record.note,
             created_at=record.created_at,
         )
-<<<<<<< HEAD
-=======
 
 
 def list_sessions(limit: int = 20) -> list[SessionLogResponse]:
@@ -86,4 +76,3 @@ def learner_stats(name: str) -> SessionAggregateResponse:
             avg_pace_wpm=round(avg_pace, 1),
             last_level=last_level,
         )
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)

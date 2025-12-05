@@ -34,11 +34,8 @@ def analyze_speech(payload: SpeechRequest) -> SpeechResponse:
         errors=mock_errors,
         coaching_tip=coaching_tip,
     )
-<<<<<<< HEAD
-=======
 
 
 def analyze_uploaded_speech(audio_path: str, reference_text: str | None) -> SpeechResponse:
     payload = SpeechRequest(reference_text=reference_text, audio_url=audio_path)
     return analyze_speech(payload)
->>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
