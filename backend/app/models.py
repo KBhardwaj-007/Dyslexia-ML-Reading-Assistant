@@ -42,6 +42,12 @@ class AdaptationRequest(BaseModel):
     error_rate: float = Field(..., ge=0, le=1)
     focus_score: float = Field(..., ge=0, le=1)
     current_level: str = Field("A1", description="Content difficulty tag")
+<<<<<<< HEAD
+=======
+    prev_pace_wpm: Optional[float] = Field(None, description="Previous pace for smoothing")
+    prev_error_rate: Optional[float] = Field(None, description="Previous error rate for smoothing")
+    prev_focus_score: Optional[float] = Field(None, description="Previous focus score for smoothing")
+>>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
 
 
 class AdaptationResponse(BaseModel):
@@ -78,6 +84,12 @@ class MentorRequest(BaseModel):
     accuracy: float = 0.8
     pace_wpm: float = 110.0
     streak_minutes: float = 5.0
+<<<<<<< HEAD
+=======
+    level: str = "A1"
+    distraction_flag: bool = False
+    fatigue_score: float = 0.2
+>>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
 
 
 class MentorResponse(BaseModel):
@@ -98,4 +110,17 @@ class SessionLogRequest(BaseModel):
 
 class SessionLogResponse(SessionLogRequest):
     id: int
+<<<<<<< HEAD
     created_at: str
+=======
+    created_at: str
+
+
+class SessionAggregateResponse(BaseModel):
+    learner_name: str
+    count: int
+    avg_accuracy: float
+    avg_focus: float
+    avg_pace_wpm: float
+    last_level: str
+>>>>>>> 7974fd6 (added all the initial requirements and gitignore for myenv)
